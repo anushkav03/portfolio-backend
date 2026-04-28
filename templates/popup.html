@@ -1,0 +1,24 @@
+<div id="bridge-audio" hx-swap-oob="true">
+    <script>   
+        pauseMusic()
+    </script>
+</div>
+<div id="popup-overlay" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+    <div class="bg-slate-800 p-8 rounded shadow-2xl">
+        <h1>Now playing: {{ state.track }} </h1>
+        <h2 class="text-white mb-4">Select a Track</h2>
+        
+        <div class="grid gap-2">
+            {% for track in tracks %}
+            <button hx-post="http://127.0.0.1:8000/music/{{ track }}" 
+                    class="bg-blue-600 p-2 text-white">
+                Play {{ track }}
+            </button>
+            {% endfor %}
+        </div>
+
+        <button onclick="this.closest('#popup-overlay').remove()" class="mt-4 text-xs text-gray-400">
+            [CLOSE]
+        </button>
+    </div>
+</div>
